@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "name": "duplicate",
+      "setup": "sudo -H pip3 install pytest",
+      "run": "python -m pytest tests/test_keycard_duplicate.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 20
+    },
+    {
+      "name": "contains",
+      "setup": "sudo -H pip3 install pytest",
+      "run": "python -m pytest tests/test_keycard_contain.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 25
+    },
+    {
+      "name": "monotone",
+      "setup": "sudo -H pip3 install pytest",
+      "run": "python -m pytest tests/test_keycard_monotone.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 25
+    }
+  ]
+}
