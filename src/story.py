@@ -1,6 +1,7 @@
 # you will need imports
-from .keycard_utils import is_valid
-from .keycard import Keycard
+# pylint: disable=import-error
+from keycard_utils import is_valid
+from keycard import Keycard
 
 WELCOME_MESSAGE = """Welcome to the hotel Blue Moon. For security reasons we
 provide keycards instead of keys. Don't worry if you lose your keycard
