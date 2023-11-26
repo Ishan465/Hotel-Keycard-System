@@ -2,8 +2,8 @@
 This module provides some utility functions
 for the Keycard class.
 """
-
-from .keycard import Keycard
+import copy
+from keycard import Keycard
 
 
 def duplicate(keycard: Keycard) -> Keycard:
@@ -17,7 +17,10 @@ def duplicate(keycard: Keycard) -> Keycard:
         Keycard: A new keycard object that is an identical deep
         copy of the original.
     """
-    return keycard
+    copy_keycard = copy.deepcopy(keycard)
+
+    # Returns the deep copy of keycard
+    return copy_keycard
 
 
 def is_monotone(keycard: Keycard) -> bool:
@@ -31,7 +34,24 @@ def is_monotone(keycard: Keycard) -> bool:
     Returns:
         bool: True if the keycard's code is monotone, False otherwise.
     """
-    return True
+    code = keycard.code
+    if len(code) == 1:
+        return True
+
+    for i in code:
+        number_position = code.index(i)
+        after_number_position = number_position + 1
+        try:
+            if code[number_position] == (
+                code[after_number_position] - 1
+            ) or code[number_position] == (
+                code[after_number_position] + 1
+            ) or (
+                code[number_position] == code[after_number_position]
+            ):
+                return True
+        except IndexError:
+            return False
 
 
 def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
@@ -46,7 +66,18 @@ def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
         bool: True if the keycard's code contains the secret number,
         otherwise it returns false.
     """
-    return True
+    code = keycard.code
+    size = len(code)
+    if size == 1:
+        return False
+    for num1 in code:
+        position_num1 = code.index(num1)
+        remaining_list = code[position_num1+1:]
+        for num2 in remaining_list:
+            if num1 + num2 == secret_num:
+                return True
+
+    return False
 
 
 def is_valid(keycard: Keycard, secret_num: int) -> bool:

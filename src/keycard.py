@@ -1,13 +1,21 @@
+'''This module creates Keycard class'''
+
 from enum import Enum
 
 
 class AccessLevel(Enum):
+    """This code creates a child class named AccessLevel
+    inheriting attributes of parent class Enum"""
+
     GREEN = "Green"
     BLUE = "Blue"
     RED = "Red"
 
 
 class Keycard:
+    """This code creates class named Keycard that
+    represents colour code and attributes of it"""
+
     COLOR_CODES = {
         AccessLevel.GREEN: "\033[92m",
         AccessLevel.BLUE: "\033[94m",
