@@ -3,7 +3,7 @@ This module provides some utility functions
 for the Keycard class.
 """
 import copy
-from keycard import Keycard
+from .keycard import Keycard
 
 
 def duplicate(keycard: Keycard) -> Keycard:
@@ -42,12 +42,10 @@ def is_monotone(keycard: Keycard) -> bool:
         number_position = code.index(i)
         after_number_position = number_position + 1
         try:
-            if code[number_position] == (
-                code[after_number_position] - 1
-            ) or code[number_position] == (
-                code[after_number_position] + 1
-            ) or (
-                code[number_position] == code[after_number_position]
+            if (
+                code[number_position] == (code[after_number_position] - 1)
+                or code[number_position] == (code[after_number_position] + 1)
+                or (code[number_position] == code[after_number_position])
             ):
                 return True
         except IndexError:
@@ -72,7 +70,7 @@ def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
         return False
     for num1 in code:
         position_num1 = code.index(num1)
-        remaining_list = code[position_num1+1:]
+        remaining_list = code[position_num1 + 1 :]
         for num2 in remaining_list:
             if num1 + num2 == secret_num:
                 return True

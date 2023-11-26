@@ -1,4 +1,4 @@
-'''This module creates Keycard class'''
+"""This module creates Keycard class"""
 
 from enum import Enum
 
