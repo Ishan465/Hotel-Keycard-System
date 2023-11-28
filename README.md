@@ -9,7 +9,10 @@
 
 # iot1001-capstone
 
-Write your name(s) and student number(s).
+This is capstone project for gruop named table 4. The members are
+Ishan
+Hetul
+Raj
 
 Write a description of the project here.
 
