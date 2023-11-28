@@ -13,7 +13,7 @@
     {
       "name": "contains",
       "setup": "sudo -H pip3 install pytest",
-      "run": "python -m pytest tests/test_keycard_contain.py",
+      "run": "python -m pytest tests/test_keycard_contains.py",
       "input": "",
       "output": "",
       "comparison": "included",
