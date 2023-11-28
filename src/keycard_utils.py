@@ -2,9 +2,9 @@
 This module provides some utility functions
 for the Keycard class.
 """
-# pylint: disable=import-error
+
 import copy
-from keycard import Keycard
+from .keycard import Keycard
 
 
 def duplicate(keycard: Keycard) -> Keycard:
