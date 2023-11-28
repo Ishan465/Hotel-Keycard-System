@@ -25,9 +25,7 @@ class Keycard:
     MIN_LENGTH = 1
 
     def __init__(
-        self,
-        code: list[int],
-        access_level: AccessLevel in COLOR_CODES
+        self, code: list[int], access_level: AccessLevel in COLOR_CODES
     ):
         if not self.MIN_LENGTH <= len(code) <= self.MAX_LENGTH:
             raise ValueError(
@@ -40,9 +38,6 @@ class Keycard:
 
         self.code = code
         self.access_level = access_level
-    
-    def get_code(self):
-        return self.code
 
     def __str__(self):
         reset_color = "\033[0m"

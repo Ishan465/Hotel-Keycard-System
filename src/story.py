@@ -1,5 +1,5 @@
 # you will need imports
-
+# python -m src.story to run this
 from .keycard_utils import is_valid
 from .keycard import Keycard, AccessLevel
 
@@ -21,7 +21,7 @@ Majority of the time you have to enter the code for first time and then you
 may use other options. In our hotel different we provide different types of
 keycards according to the type of room.
 """
-REQUIREMENTS = '''Below are the requirements of your keycard
+REQUIREMENTS = """Below are the requirements of your keycard
 * Your code must contain numbers only.
 * The length of code must be between 1 and 16
 * Your code must not be monotone i.e 1,2,3
@@ -32,11 +32,11 @@ REQUIREMENTS = '''Below are the requirements of your keycard
   but in the near future we may provide more options 
 * Once your code is valid your code will be highlighted with your
   access level color.
-'''
+"""
 
-ADVICE = '''Always remember your code. Do not share it with anyone.
+ADVICE = """Always remember your code. Do not share it with anyone.
  You can take photo of the code and your secret number given below.
- Remember that your code will glow with the colour of your access level'''
+ Remember that your code will glow with the colour of your access level"""
 
 
 def convert_to_list(u_input: str):
@@ -78,13 +78,17 @@ if __name__ == "__main__":
             if user_input.lower() == "requirements":
                 print(REQUIREMENTS)
                 continue
-            u_code = convert_to_list(user_input)
-            secret_num = int(input("Please enter your preferred secret number: "))
-            u_access_level = input("Please enter your preferred access level: ")
+            converted_code = convert_to_list(user_input)
+            secret_num = int(
+                input("Please enter your preferred secret number: ")
+            )
+            u_access_level = input(
+                "Please enter your preferred access level: "
+            )
 
-            a_level = check_access_level(u_access_level)
+            check_level = check_access_level(u_access_level)
 
-            if a_level:
+            if check_level:
                 print("Checking your input with our database...")
             else:
                 print("Please enter correct access level(green, blue, red)")
@@ -92,19 +96,23 @@ if __name__ == "__main__":
 
             ENTER = input("Press 'Enter' key to continue ")
 
-            user_keycard = Keycard(code=u_code, access_level=a_level)
+            user_keycard = Keycard(
+                code=converted_code, access_level=check_level
+            )
 
             if is_valid(user_keycard, secret_num):
                 print("\nYour code is valid. You can start using your keycard")
                 print(ADVICE)
-                print(f'Your code: {user_keycard}')
-                print(f'Your secret number: {secret_num}')
+                print(f"Your code: {user_keycard}")
+                print(f"Your secret number: {secret_num}")
 
             else:
                 print("\nERROR!!! Code is not valid. Entry not allowed")
 
             break
         except ValueError:
-            print("\nERROR!!! Please enter only numbers and code should have\
-length less than 16")
+            print(
+                "\nERROR!!! Please enter only numbers and code should have\
+length less than 16"
+            )
             continue
