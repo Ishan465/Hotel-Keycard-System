@@ -49,6 +49,8 @@ def is_monotone(keycard: Keycard) -> bool:
                 or (code[number_position] == code[after_number_position])
             ):
                 return True
+            else:
+                return False
         except IndexError:
             return False
 
