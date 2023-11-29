@@ -49,6 +49,8 @@ def is_monotone(keycard: Keycard) -> bool:
         for j in remaining_list:
             if i in (j - 1, j + 1, j):
                 return True
+            
+    return not True
 
 
 def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
