@@ -41,18 +41,16 @@ def is_monotone(keycard: Keycard) -> bool:
 
     for i in code:
         number_position = code.index(i)
+        if number_position == -1:
+            break
+
         after_number_position = number_position + 1
-        try:
-            if (
-                code[number_position] == (code[after_number_position] - 1)
-                or code[number_position] == (code[after_number_position] + 1)
-                or (code[number_position] == code[after_number_position])
-            ):
+        remaining_list = code[after_number_position:]
+        for j in remaining_list:
+            if i in (j - 1, j + 1, j):
                 return True
-            else:
-                return False
-        except IndexError:
-            return False
+
+    return False
 
 
 def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
@@ -73,7 +71,7 @@ def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
         return False
     for num1 in code:
         position_num1 = code.index(num1)
-        remaining_list = code[position_num1 + 1:]
+        remaining_list = code[position_num1 + 1 :]
         for num2 in remaining_list:
             if num1 + num2 == secret_num:
                 return True
@@ -95,3 +93,9 @@ def is_valid(keycard: Keycard, secret_num: int) -> bool:
     contains_secret = contains_secret_num(keycard, secret_num)
     not_monotone = not is_monotone(keycard)
     return contains_secret and not_monotone
+
+
+lis = [1, 5, 10, 1100, 1101, 1102, 9001]
+test = Keycard(lis, any)
+
+print(is_monotone(test))
