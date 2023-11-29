@@ -24,9 +24,7 @@ class Keycard:
     MAX_LENGTH = 16
     MIN_LENGTH = 1
 
-    def __init__(
-        self, code: list[int], access_level: AccessLevel in COLOR_CODES
-    ):
+    def __init__(self, code: list[int], access_level: AccessLevel.GREEN):
         if not self.MIN_LENGTH <= len(code) <= self.MAX_LENGTH:
             raise ValueError(
                 f"The code must be between {self.MIN_LENGTH} "
