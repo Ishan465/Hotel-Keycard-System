@@ -1,6 +1,5 @@
-'''This is the module for using all the functions and creating a program'''
+"""This is the module for using all the functions and creating a program"""
 
-# you will need imports
 # python -m src.story to run this
 from .keycard_utils import is_valid
 from .keycard import Keycard, AccessLevel
@@ -37,8 +36,8 @@ REQUIREMENTS = """Below are the requirements of your keycard
 """
 
 ADVICE = """Always remember your code. Do not share it with anyone.
- You can take photo of the code and your secret number given below.
- Remember that your code will glow with the colour of your access level"""
+You can take photo of the code and your secret number given below.
+Remember that your code will glow with the colour of your access level"""
 
 
 def convert_to_list(u_input: str):
@@ -118,3 +117,5 @@ if __name__ == "__main__":
 length less than 16"
             )
             continue
+
+# python -m src.story to run this

@@ -49,7 +49,7 @@ def is_monotone(keycard: Keycard) -> bool:
         for j in remaining_list:
             if i in (j - 1, j + 1, j):
                 return True
-            
+
     return not True
 
 
@@ -71,7 +71,7 @@ def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
         return False
     for num1 in code:
         position_num1 = code.index(num1)
-        remaining_list = code[position_num1 + 1 :]
+        remaining_list = code[position_num1 + 1:]
         for num2 in remaining_list:
             if num1 + num2 == secret_num:
                 return True
@@ -95,7 +95,8 @@ def is_valid(keycard: Keycard, secret_num: int) -> bool:
     return contains_secret and not_monotone
 
 
-#lis = [-1, -5, -10, -1100, -900, -1101, -1102]
-#test = Keycard(lis, any)
+# lis = [-1, -5, -10, -1100, -900, -1101, -1102]
+# test = Keycard(lis, any)
+# print(not is_monotone(test))
 
-#print( not is_monotone(test))
+# python -m src.keycard_utils to run this
