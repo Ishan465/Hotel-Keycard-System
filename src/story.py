@@ -11,7 +11,9 @@ mean that you become careless. Type help to get more info of keycards.
 As you are our new customer you need to create a new keycard.
 The keycard should contain less than 16 numbers.
 \nType help to know more about keycard. Type requirements to know the\
-requirements of your code
+requirements of your code. If you started the process of creating keycard
+and then changed mind to stay in our hotel you can press 'q' to exit the
+program
 """
 
 HELP_MESSAGE = """ A keycard is a security token that grants you access
@@ -22,6 +24,7 @@ Majority of the time you have to enter the code for first time and then you
 may use other options. In our hotel different we provide different types of
 keycards according to the type of room.
 """
+
 REQUIREMENTS = """Below are the requirements of your keycard
 * Your code must contain numbers only.
 * The length of code must be between 1 and 16
@@ -54,6 +57,9 @@ if __name__ == "__main__":
             if user_input.lower() == "requirements":
                 print(REQUIREMENTS)
                 continue
+            if user_input.lower() == "q":
+                print("Thanks for your visit have a great day")
+                break
             converted_code = convert_to_list(user_input)
             secret_num = int(
                 input("Please enter your preferred secret number: ")

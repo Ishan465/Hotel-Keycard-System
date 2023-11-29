@@ -36,7 +36,8 @@ def is_monotone(keycard: Keycard) -> bool:
         bool: True if the keycard's code is monotone, False otherwise.
     """
     code = keycard.code
-    if len(code) == 1:
+    size = len(code)
+    if size == 1:
         return True
 
     for i in code:
@@ -50,7 +51,7 @@ def is_monotone(keycard: Keycard) -> bool:
             if i in (j - 1, j + 1, j):
                 return True
 
-    return not True
+    return False
 
 
 def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
@@ -71,7 +72,11 @@ def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
         return False
     for num1 in code:
         position_num1 = code.index(num1)
-        remaining_list = code[position_num1 + 1:]
+        if position_num1 == -1:
+            break
+
+        after_number_position = position_num1 + 1
+        remaining_list = code[after_number_position:]
         for num2 in remaining_list:
             if num1 + num2 == secret_num:
                 return True
@@ -97,7 +102,13 @@ def is_valid(keycard: Keycard, secret_num: int) -> bool:
 
 def convert_to_list(u_input: str):
     """This function will convert user input to list so the validation of
-    code can be done"""
+    code can be done.
+
+    Parameters:
+        u_input (string): The input of user.
+
+    Returns:
+        converted_list: The code list from user input."""
     converted_list = []
     for num in u_input.split(" "):
         converted_list.append(int(num))
@@ -106,7 +117,14 @@ def convert_to_list(u_input: str):
 
 
 def check_access_level(p_access_level: str):
-    """This function will check whether access level is green ,blue or red"""
+    """This function will check whether access level is green ,blue or red.
+
+    Paarameters:
+        p_access_level(str): The access level of the user.
+
+    Returns:
+        user_access_level(Enum): The enum of that access level.
+        False(bool): if the condistions are not met."""
 
     if p_access_level.title() == "Green":
         user_access_level = AccessLevel.GREEN
