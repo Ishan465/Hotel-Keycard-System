@@ -71,7 +71,7 @@ def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
         return False
     for num1 in code:
         position_num1 = code.index(num1)
-        remaining_list = code[position_num1 + 1 :]
+        remaining_list = code[position_num1 + 1:]
         for num2 in remaining_list:
             if num1 + num2 == secret_num:
                 return True

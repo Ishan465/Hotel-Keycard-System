@@ -1,8 +1,11 @@
+'''This module validates the is monotone function'''
+
 from src.keycard_utils import is_monotone
 from src.keycard import Keycard
 
 
 def test_monotonic_keycard():
+    '''This will check whether the function is monotonic'''
     assert is_monotone(
         Keycard([-1, -5, -10, -1100, -1100, -1101, -1102, -9001])
     ), "Test Failed: Expected is monotone"

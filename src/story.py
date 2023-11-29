@@ -1,3 +1,5 @@
+'''This is the module for using all the functions and creating a program'''
+
 # you will need imports
 # python -m src.story to run this
 from .keycard_utils import is_valid
@@ -7,7 +9,7 @@ WELCOME_MESSAGE = """Welcome to the Hotel Blue Moon. For security reasons we
 provide keycards instead of keys. Don't worry if you lose your keycard
 as we always create a deep copy of keycard. However this doesn't
 mean that you become careless. Type help to get more info of keycards.
-As you are our new customer you need to create a new keycard. 
+As you are our new customer you need to create a new keycard.
 The keycard should contain less than 16 numbers.
 \nType help to know more about keycard. Type requirements to know the\
 requirements of your code
@@ -17,7 +19,7 @@ HELP_MESSAGE = """ A keycard is a security token that grants you access
 through electrically-powered doors. These systems require a keycard reader
 (installed on the door) and you gain access by either tapping your card on
  the reader (proximity reader), swiping it (swipe reader), or inserting it.
-Majority of the time you have to enter the code for first time and then you 
+Majority of the time you have to enter the code for first time and then you
 may use other options. In our hotel different we provide different types of
 keycards according to the type of room.
 """
@@ -29,7 +31,7 @@ REQUIREMENTS = """Below are the requirements of your keycard
 * Your secret number should be addition of any 2 numbers in code
 * Negative numbers are allowed
 * Currently you can choose access level from green, blue, red
-  but in the near future we may provide more options 
+  but in the near future we may provide more options
 * Once your code is valid your code will be highlighted with your
   access level color.
 """
