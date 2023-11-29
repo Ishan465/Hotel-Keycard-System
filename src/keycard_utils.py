@@ -3,7 +3,7 @@ This module provides some utility functions
 for the Keycard class.
 """
 
-# import copy
+import copy
 from .keycard import Keycard
 
 
@@ -18,8 +18,7 @@ def duplicate(keycard: Keycard) -> Keycard:
         Keycard: A new keycard object that is an identical deep
         copy of the original.
     """
-    # copy_keycard = copy.deepcopy(keycard)
-    copy_keycard = keycard
+    copy_keycard = copy.deepcopy(keycard)
 
     # Returns the deep copy of keycard
     return copy_keycard
