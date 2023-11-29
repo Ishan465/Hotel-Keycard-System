@@ -4,7 +4,7 @@ for the Keycard class.
 """
 
 import copy
-from .keycard import Keycard
+from .keycard import Keycard, AccessLevel
 
 
 def duplicate(keycard: Keycard) -> Keycard:
@@ -71,7 +71,7 @@ def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
         return False
     for num1 in code:
         position_num1 = code.index(num1)
-        remaining_list = code[position_num1 + 1 :]
+        remaining_list = code[position_num1 + 1:]
         for num2 in remaining_list:
             if num1 + num2 == secret_num:
                 return True
@@ -93,6 +93,31 @@ def is_valid(keycard: Keycard, secret_num: int) -> bool:
     contains_secret = contains_secret_num(keycard, secret_num)
     not_monotone = not is_monotone(keycard)
     return contains_secret and not_monotone
+
+
+def convert_to_list(u_input: str):
+    """This function will convert user input to list so the validation of
+    code can be done"""
+    converted_list = []
+    for num in u_input.split(" "):
+        converted_list.append(int(num))
+
+    return converted_list
+
+
+def check_access_level(p_access_level: str):
+    """This function will check whether access level is green ,blue or red"""
+
+    if p_access_level.title() == "Green":
+        user_access_level = AccessLevel.GREEN
+        return user_access_level
+    if p_access_level.title() == "Blue":
+        user_access_level = AccessLevel.BLUE
+        return user_access_level
+    if p_access_level.title() == "Red":
+        user_access_level = AccessLevel.RED
+        return user_access_level
+    return False
 
 
 # lis = [-1, -5, -10, -1100, -900, -1101, -1102]

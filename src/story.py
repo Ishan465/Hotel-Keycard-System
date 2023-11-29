@@ -1,8 +1,8 @@
 """This is the module for using all the functions and creating a program"""
 
 # python -m src.story to run this
-from .keycard_utils import is_valid
-from .keycard import Keycard, AccessLevel
+from .keycard_utils import is_valid, convert_to_list, check_access_level
+from .keycard import Keycard
 
 WELCOME_MESSAGE = """Welcome to the Hotel Blue Moon. For security reasons we
 provide keycards instead of keys. Don't worry if you lose your keycard
@@ -38,31 +38,6 @@ REQUIREMENTS = """Below are the requirements of your keycard
 ADVICE = """Always remember your code. Do not share it with anyone.
 You can take photo of the code and your secret number given below.
 Remember that your code will glow with the colour of your access level"""
-
-
-def convert_to_list(u_input: str):
-    """This function will convert user input to list so the validation of
-    code can be done"""
-    converted_list = []
-    for num in u_input.split(" "):
-        converted_list.append(int(num))
-
-    return converted_list
-
-
-def check_access_level(p_access_level: str):
-    """This function will check whether access level is green ,blue or red"""
-
-    if p_access_level.title() == "Green":
-        user_access_level = AccessLevel.GREEN
-        return user_access_level
-    if p_access_level.title() == "Blue":
-        user_access_level = AccessLevel.BLUE
-        return user_access_level
-    if p_access_level.title() == "Red":
-        user_access_level = AccessLevel.RED
-        return user_access_level
-    return False
 
 
 if __name__ == "__main__":
