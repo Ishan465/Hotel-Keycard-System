@@ -65,16 +65,11 @@ if __name__ == "__main__":
                 input("Please enter your preferred secret number: ")
             )
             u_access_level = input(
-                "Please enter your preferred access level: "
+                "Please enter your preferred access level(green, blue, red)\
+(default is green): "
             )
 
             check_level = check_access_level(u_access_level)
-
-            if check_level:
-                print("Checking your input with our database...")
-            else:
-                print("Please enter correct access level(green, blue, red)")
-                continue
 
             ENTER = input("Press 'Enter' key to continue ")
 

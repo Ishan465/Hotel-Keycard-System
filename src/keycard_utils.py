@@ -135,8 +135,9 @@ def check_access_level(p_access_level: str):
     if p_access_level.title() == "Red":
         user_access_level = AccessLevel.RED
         return user_access_level
-    return False
-
+    else:
+        user_access_level = AccessLevel.GREEN
+        return user_access_level
 
 # lis = [-1, -5, -10, -1100, -900, -1101, -1102]
 # test = Keycard(lis, any)
