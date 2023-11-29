@@ -50,8 +50,6 @@ def is_monotone(keycard: Keycard) -> bool:
             if i in (j - 1, j + 1, j):
                 return True
 
-    return False
-
 
 def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
     """
@@ -95,7 +93,7 @@ def is_valid(keycard: Keycard, secret_num: int) -> bool:
     return contains_secret and not_monotone
 
 
-lis = [1, 5, 10, 1100, 1101, 1102, 9001]
-test = Keycard(lis, any)
+#lis = [-1, -5, -10, -1100, -900, -1101, -1102]
+#test = Keycard(lis, any)
 
-print(is_monotone(test))
+#print( not is_monotone(test))
