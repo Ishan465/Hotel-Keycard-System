@@ -36,11 +36,14 @@ def is_increasing(code: list) -> bool:
     num1 = code[0]  # First creating a variable num1 as first element of list
 
     for num2 in code:  # Using for loop to iterate in list
-        if (num2 == num1) or (num2 > num1):  # If this conditions are met,
+        if num2 == num1:
+            continue
+        if num2 > num1:  # If this conditions are met,
             num1 = num2  # set num1 as num 2 the continue the list
-        elif num1 == code[-1]:
-            break
-        else:
+            continue
+        if num2 < num1:
+            return False
+        if num2 == code[-1]:
             return False  # If conditions are not met return False
 
     return True  # If the conditions are met for whole list then return true
@@ -59,11 +62,14 @@ def is_decreasing(code: list) -> bool:
     num1 = code[0]
 
     for num2 in code:
-        if (num2 == num1) or (num2 < num1):
+        if num2 == num1:
+            continue
+        if num2 < num1:
             num1 = num2
-        elif num1 == code[-1]:
-            break
-        else:
+            continue
+        if num2 > num1:
+            return False
+        if num2 == code[-1]:
             return False
 
     return True
@@ -219,11 +225,15 @@ def check_access_level(p_access_level: str):
         return user_access_level
 
 
-#lis = [3, 5, -4, 8, 11, 1, -1, 6]
-#sec = 10
-#test = Keycard(lis, any)
-#print(is_monotone(test))
-#print(contains_secret_num(test, 10))
-#print(is_valid(test, 10))
+# lis = [100, 200 ]
+# lis = [1, 1, 1, 2, 3, 4, 1]
+# lis = [1, 2, 3, 4, 1,3]
+# sec = 5
+# test = Keycard(lis, any)
+# print(is_monotone(test))
+# print(is_increasing(lis))
+# print(is_decreasing(lis))
+# print(contains_secret_num(test, sec))
+# print(is_valid(test, sec))
 
 # python -m src.keycard_utils to run this
