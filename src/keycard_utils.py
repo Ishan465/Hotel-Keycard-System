@@ -24,25 +24,48 @@ def duplicate(keycard: Keycard) -> Keycard:
     return copy_keycard
 
 
-def is_increasing(code: list):
-    """This functions checks whether the list is continuosly increasing"""
-    num1 = code[0]
-    for num2 in code:
-        if (num2 == num1) or num2 > num1:
-            num1 = num2
+def is_increasing(code: list) -> bool:
+    """
+    This functions checks whether the list is continuosly increasing.
+
+    Parameters:
+        code(list): The code of keycard.
+
+    Returns: True if the list is constantly increasing, otherwise False.
+    """
+    num1 = code[0]  # First creating a variable num1 as first element of list
+
+    for num2 in code:  # Using for loop to iterate in list
+        if (num2 == num1) or (num2 > num1):  # If this conditions are met,
+            num1 = num2  # set num1 as num 2 the continue the list
+        elif num1 == code[-1]:
+            break
         else:
-            return False
-    return True
+            return False  # If conditions are not met return False
+
+    return True  # If the conditions are met for whole list then return true
 
 
-def is_decreasing(code: list):
-    """This functions checks whether the list is continuosly increasing"""
+def is_decreasing(code: list) -> bool:
+    """
+    This functions checks whether the list is continuosly decreasing.
+
+    Parameters:
+        code(list): The code of keycard.
+
+    Returns: True if the list is constantly decreasing, otherwise False
+    """
+    # The logic for this function is similar to is_increasing function
     num1 = code[0]
+
     for num2 in code:
-        if (num2 == num1) or num2 < num1:
+        if (num2 == num1) or (num2 < num1):
             num1 = num2
+        elif num1 == code[-1]:
+            break
         else:
             return False
+
     return True
 
 
@@ -57,12 +80,17 @@ def is_monotone(keycard: Keycard) -> bool:
     Returns:
         bool: True if the keycard's code is monotone, False otherwise.
     """
-    code = keycard.code
-    size = len(code)
-    if size == 1:
-        return True
+    code = keycard.code  # create a variable for code attribute of keycard
+    size = len(code)  # check the length of list
 
-    result = is_increasing or is_decreasing
+    if (
+        size == 1
+    ):  # If it is 1 return true as there are no number to compare with
+        return True  # and list of single element is not allowed
+
+    result = is_increasing(code) or is_decreasing(code)
+    # The result whether the list is monotonic will depend on is_increasing or
+    # is decreasing function
 
     return result
 
@@ -79,22 +107,42 @@ def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
         bool: True if the keycard's code contains the secret number,
         otherwise it returns false.
     """
-    code = keycard.code
-    size = len(code)
-    if size == 1:
-        return False
-    for num1 in code:
-        position_num1 = code.index(num1)
-        if position_num1 == -1:
-            break
+    code = keycard.code  # create a variable for code attribute of keycard
+    size = len(code)  # check the length of list
 
-        after_number_position = position_num1 + 1
-        remaining_list = code[after_number_position:]
-        for num2 in remaining_list:
-            if num1 + num2 == secret_num:
+    if size == 1:  # If it is 1 return false as there are no number to add with
+        return False  # and list of single element is not allowed
+
+    for num1 in code:
+        position_num1 = code.index(num1)  # finding the position of num1
+        if position_num1 == -1:  # if it is last element then break as
+            break  # we can not find next element which is necessary
+
+        after_number_position = (
+            position_num1 + 1
+        )  # after number postion of num1
+        remaining_list = code[
+            after_number_position:
+        ]  # created a new list excluding num1
+        # I have excluded the num 1 because of the following reason:
+        # lets say we have list as [1,3,2,4] and secret num as 2
+        # technically the secret num is sum of two digits in a list which in
+        # this case is false as we dont have "distinct" numbers that sum to 2
+        # but if I included the first iterable number then it would consider
+        # first number and return true as 1 will also be repeated in second
+        # loop and 1+1 = 2 so i think this logical paradox will be created
+
+        for (
+            num2
+        ) in (
+            remaining_list
+        ):  # used nested for loop for num 2 from remaning list
+            if (
+                num1 + num2 == secret_num
+            ):  # if the condition is met then return true
                 return True
 
-    return False
+    return False  # if none of the conditions are met return false
 
 
 def is_valid(keycard: Keycard, secret_num: int) -> bool:
@@ -109,24 +157,36 @@ def is_valid(keycard: Keycard, secret_num: int) -> bool:
         bool: True if the keycard is valid, False otherwise.
     """
     contains_secret = contains_secret_num(keycard, secret_num)
+    # creates a variable for result of contains secret num
     not_monotone = not is_monotone(keycard)
-    return contains_secret and not_monotone
+    # creates a variable for result of not is_monotone
+    # as we do not want the list to be monotone
+    # if list is not monotone it will result false
+    # so not is_monotone will be True
+
+    result = contains_secret and not_monotone
+    # result will be and logic of both the functions
+    # that means both s
+    return result
 
 
 def convert_to_list(u_input: str):
-    """This function will convert user input to list so the validation of
-    code can be done.
+    """
+    Convert user input to list so the validation of code can be done.
 
     Parameters:
         u_input (string): The input of user.
 
     Returns:
-        converted_list: The code list from user input."""
-    converted_list = []
-    for num in u_input.split(" "):
-        converted_list.append(int(num))
+        converted_list: The code list from user input.
+    """
+    converted_list = []  # creates an empty list
+    for num in u_input.split(
+        " "
+    ):  # used for loop to iterate through user input seperated by space
+        converted_list.append(int(num))  # appends the number to empty list
 
-    return converted_list
+    return converted_list  # returns converted list
 
 
 def check_access_level(p_access_level: str):
@@ -139,22 +199,31 @@ def check_access_level(p_access_level: str):
         user_access_level(Enum): The enum of that access level.
         False(bool): if the condistions are not met."""
 
-    if p_access_level.title() == "Green":
+    if (
+        p_access_level.title() == "Green"
+    ):  # if user input is green return accesslevel green
         user_access_level = AccessLevel.GREEN
         return user_access_level
-    if p_access_level.title() == "Blue":
+    if (
+        p_access_level.title() == "Blue"
+    ):  # if user input is blue return accesslevel blue
         user_access_level = AccessLevel.BLUE
         return user_access_level
-    if p_access_level.title() == "Red":
+    if (
+        p_access_level.title() == "Red"
+    ):  # if user red is green return accesslevel red
         user_access_level = AccessLevel.RED
         return user_access_level
     else:
-        user_access_level = AccessLevel.GREEN
+        user_access_level = AccessLevel.GREEN  # default accesslevel is green
         return user_access_level
 
 
-# lis = [-1, -5, -10, -1100, -900, -1101, -1102]
-# test = Keycard(lis, any)
-# print(not is_monotone(test))
+#lis = [3, 5, -4, 8, 11, 1, -1, 6]
+#sec = 10
+#test = Keycard(lis, any)
+#print(is_monotone(test))
+#print(contains_secret_num(test, 10))
+#print(is_valid(test, 10))
 
 # python -m src.keycard_utils to run this

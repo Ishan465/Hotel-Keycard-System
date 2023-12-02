@@ -19,7 +19,7 @@ program
 HELP_MESSAGE = """ A keycard is a security token that grants you access
 through electrically-powered doors. These systems require a keycard reader
 (installed on the door) and you gain access by either tapping your card on
- the reader (proximity reader), swiping it (swipe reader), or inserting it.
+the reader (proximity reader), swiping it (swipe reader), or inserting it.
 Majority of the time you have to enter the code for first time and then you
 may use other options. In our hotel different we provide different types of
 keycards according to the type of room.
@@ -28,7 +28,8 @@ keycards according to the type of room.
 REQUIREMENTS = """Below are the requirements of your keycard
 * Your code must contain numbers only.
 * The length of code must be between 1 and 16
-* Your code must not be monotone i.e 1,2,3
+* Your code must not be monotone which means that it should not be
+ continuosly increasing or decreasing
 * Your secret number must be a single number
 * Your secret number should be addition of any 2 numbers in code
 * Negative numbers are allowed
@@ -45,6 +46,7 @@ Remember that your code will glow with the colour of your access level"""
 
 if __name__ == "__main__":
     print(WELCOME_MESSAGE)
+
     while True:
         try:
             user_input = input(
@@ -60,10 +62,13 @@ if __name__ == "__main__":
             if user_input.lower() == "q":
                 print("Thanks for your visit have a great day")
                 break
+
             converted_code = convert_to_list(user_input)
+
             secret_num = int(
                 input("Please enter your preferred secret number: ")
             )
+
             u_access_level = input(
                 "Please enter your preferred access level(green, blue, red)\
 (default is green): "
@@ -84,7 +89,9 @@ if __name__ == "__main__":
                 print(f"Your secret number: {secret_num}")
 
             else:
-                print("\nERROR!!! Code is not valid. Entry not allowed")
+                print(
+                    "\nERROR!!! Code not valid. Please review the requirements"
+                )
 
             break
         except ValueError:
