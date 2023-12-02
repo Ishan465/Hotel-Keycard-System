@@ -24,6 +24,28 @@ def duplicate(keycard: Keycard) -> Keycard:
     return copy_keycard
 
 
+def is_increasing(code: list):
+    """This functions checks whether the list is continuosly increasing"""
+    num1 = code[0]
+    for num2 in code:
+        if (num2 == num1) or num2 > num1:
+            num1 = num2
+        else:
+            return False
+    return True
+
+
+def is_decreasing(code: list):
+    """This functions checks whether the list is continuosly increasing"""
+    num1 = code[0]
+    for num2 in code:
+        if (num2 == num1) or num2 < num1:
+            num1 = num2
+        else:
+            return False
+    return True
+
+
 def is_monotone(keycard: Keycard) -> bool:
     """
     Determines whether the keycard's code is monotone, i.e., either constantly
@@ -40,18 +62,9 @@ def is_monotone(keycard: Keycard) -> bool:
     if size == 1:
         return True
 
-    for i in code:
-        number_position = code.index(i)
-        if number_position == -1:
-            break
+    result = is_increasing or is_decreasing
 
-        after_number_position = number_position + 1
-        remaining_list = code[after_number_position:]
-        for j in remaining_list:
-            if i in (j - 1, j + 1, j):
-                return True
-
-    return False
+    return result
 
 
 def contains_secret_num(keycard: Keycard, secret_num: int) -> bool:
@@ -138,6 +151,7 @@ def check_access_level(p_access_level: str):
     else:
         user_access_level = AccessLevel.GREEN
         return user_access_level
+
 
 # lis = [-1, -5, -10, -1100, -900, -1101, -1102]
 # test = Keycard(lis, any)
