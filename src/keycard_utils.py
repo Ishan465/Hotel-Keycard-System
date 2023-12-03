@@ -18,6 +18,7 @@ def duplicate(keycard: Keycard) -> Keycard:
         copy of the original.
     """
     code = [] + keycard.code
+    # added empty list so that it points to different memory address
     access_level = keycard.access_level
 
     copy_keycard = Keycard(code, access_level)
@@ -39,16 +40,16 @@ def is_increasing(code: list) -> bool:
     for num2 in code:  # Using for loop to iterate in list
         if num2 == num1:
             continue
-        if num2 > num1:  # If this conditions are met,
+        if num2 > num1:  # If this condition is met,
             num1 = num2  # set num1 as num 2 the continue the list
-            continue
-        # in this logic continue is very important because when the
-        # num 2 reaches last element and above two conditions met for
-        # whole loop then the loop will end and will return true
         if num2 < num1:
             return False
+    # this function checks if the num2 > num1 so if num2 < num 1 it will
+    # return false
 
-    return True  # If the conditions are met for whole list then return true
+    # If whole list is iterated and we do not find any condition of num2 < num1
+    # it will return true
+    return True
 
 
 def is_decreasing(code: list) -> bool:
@@ -68,7 +69,6 @@ def is_decreasing(code: list) -> bool:
             continue
         if num2 < num1:
             num1 = num2
-            continue
         if num2 > num1:
             return False
 
@@ -228,6 +228,7 @@ def check_access_level(p_access_level: str):
 # few tests
 
 
+# lis = [1, 2, 3, 4, 5]
 # lis = [1, 2, 3, 4, 3, 5]
 # lis = [1, 1, 1, 2, 3, 4, 1]
 # lis = [1, 2, 3, 4, 1,3]
