@@ -41,10 +41,11 @@ def is_increasing(code: list) -> bool:
         if num2 > num1:  # If this conditions are met,
             num1 = num2  # set num1 as num 2 the continue the list
             continue
+        # in this logic continue is very important because when the
+        # num 2 reaches last element and above two conditions met for
+        # whole loop then the loop will end and will return true
         if num2 < num1:
             return False
-        if num2 == code[-1]:
-            return False  # If conditions are not met return False
 
     return True  # If the conditions are met for whole list then return true
 
@@ -68,8 +69,6 @@ def is_decreasing(code: list) -> bool:
             num1 = num2
             continue
         if num2 > num1:
-            return False
-        if num2 == code[-1]:
             return False
 
     return True
@@ -225,8 +224,11 @@ def check_access_level(p_access_level: str):
         return user_access_level
 
 
-# lis = [100, 200 ]
-# lis = [1, 1, 1, 2, 3, 4, 1]
+# few tests
+
+
+# lis = [1, 2, 3, 4, 3, 5]
+lis = [1, 1, 1, 2, 3, 4, 1]
 # lis = [1, 2, 3, 4, 1,3]
 # sec = 5
 # test = Keycard(lis, any)
