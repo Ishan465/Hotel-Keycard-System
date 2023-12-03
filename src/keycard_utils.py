@@ -3,7 +3,6 @@ This module provides some utility functions
 for the Keycard class.
 """
 
-import copy
 from .keycard import Keycard, AccessLevel
 
 
@@ -18,8 +17,10 @@ def duplicate(keycard: Keycard) -> Keycard:
         Keycard: A new keycard object that is an identical deep
         copy of the original.
     """
-    copy_keycard = copy.deepcopy(keycard)
+    code = [] + keycard.code
+    access_level = keycard.access_level
 
+    copy_keycard = Keycard(code, access_level)
     # Returns the deep copy of keycard
     return copy_keycard
 
@@ -228,7 +229,7 @@ def check_access_level(p_access_level: str):
 
 
 # lis = [1, 2, 3, 4, 3, 5]
-lis = [1, 1, 1, 2, 3, 4, 1]
+# lis = [1, 1, 1, 2, 3, 4, 1]
 # lis = [1, 2, 3, 4, 1,3]
 # sec = 5
 # test = Keycard(lis, any)
