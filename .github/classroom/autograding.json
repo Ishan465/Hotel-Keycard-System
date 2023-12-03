@@ -23,7 +23,7 @@
     {
       "name": "monotone",
       "setup": "sudo -H pip3 install pytest",
-      "run": "python -m pytest tests/test_keycard_monotone.py",
+      "run": "python -m pytest tests/test_keycard_monotonic.py",
       "input": "",
       "output": "",
       "comparison": "included",
