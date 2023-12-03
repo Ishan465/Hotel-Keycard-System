@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
             check_level = check_access_level(u_access_level)
 
-            print('Checking your code with our database...')
+            print("Checking your code with our database...")
             ENTER = input("Press 'Enter' key to continue ")
 
             user_keycard = Keycard(
@@ -96,9 +96,7 @@ if __name__ == "__main__":
 
             break
         except ValueError:
-            print(
-                "\nERROR!!! Code not valid. Please review the requirements"
-            )
+            print("\nERROR!!! Code not valid. Please review the requirements")
             continue
 
 # python -m src.story to run this
